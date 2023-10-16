@@ -30,6 +30,10 @@ requirements:
 test:
   imports:
     - pivottablejs
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://pivottable.js.org

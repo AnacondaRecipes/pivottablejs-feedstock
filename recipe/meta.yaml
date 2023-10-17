@@ -14,13 +14,15 @@ source:
   {{ hash_type }}: {{ hash_value }}
 
 build:
-  number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  number: 1
+  script: pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
     - python
     - setuptools
+    - pip
+    - wheel
   run:
     - python
     - ipython
@@ -28,11 +30,16 @@ requirements:
 test:
   imports:
     - pivottablejs
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://pivottable.js.org
-  license: MIT License
+  license: MIT
   license_family: MIT
   license_file: {{ environ["RECIPE_DIR"] }}/LICENSE.md
   summary: PivotTable.js integration for Jupyter/IPython Notebook
   dev_url: https://github.com/nicolaskruchten/jupyter_pivottablejs
+  doc_url: https://github.com/nicolaskruchten/jupyter_pivottablejs
